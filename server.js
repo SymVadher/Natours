@@ -14,14 +14,14 @@ const DB = process.env.MONGO_URL.replace(
   "<PASSWORD>",
   process.env.MONGO_Password
 );
-mongoose.connect(DB).then(() => logger.info("Database connected successfully"));
+mongoose.connect(DB).then(() => logger.info("Database connection successfull"));
 
 const server = app.listen(8000, () => {
   logger.info("Server Started");
 });
 
 process.on("unhandledRejection", (err) => {
-  logger.error("Unhandled Rejection!!! Shutting Down...", err);
+  logger.error("Unhandled Rejection!!! Exiting...", err);
   server.close(() => {
     process.exit(1);
   });
